@@ -6,7 +6,7 @@ const movies = require('./models/movies');
 const genres = require('./models/genres');
 const users = require('./models/users');
 
-const sequelize = new Sequelize('postgres://postgres:postgres@localhost:5432/disney',{
+const sequelize = new Sequelize('postgres://postgres:pgadmin@localhost:5432/disneyback',{
     logging: false
 });
 
@@ -26,5 +26,6 @@ genre.belongsTo(movie);
 
 
 module.exports = {
-    server: sequelize
+    server: sequelize,
+    models: {character,movie,genre}
 }

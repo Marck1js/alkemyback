@@ -1,16 +1,22 @@
 const jwt = require('jsonwebtoken');
 
 async function login (req,res, next){
-    
+    let {name, email} = req.body; 
+
     const user = {
-        nombre: 'marco',
-        email: 'marco@gmail.com'
+        nombre: name,
+        email: email
     }
-    jwt.sign({user}, 'secretKey', {expiresIn: '32s'},(err, token)=> {
-        res.send({
-            token
+    if(!name || !email){
+        return res.send({msg: 'Faltan datos para crear loguearse'})
+    }else {
+
+        jwt.sign({user}, 'secretKey', {expiresIn: '60s'},(err, token)=> {
+            res.send({
+                token
+            })
         })
-    })
+    }
 
 };
 
